@@ -1,0 +1,4 @@
+We can make the functionalities of hexCal class generic by asking base of number to be enterd. Then according to 
+the base we can easily convert the number in decimal by multiplying it with base to the power of position. 
+And similary can convert the decimal number into base number by continuously dividing it by base and storing the remainder
+in reverse order.

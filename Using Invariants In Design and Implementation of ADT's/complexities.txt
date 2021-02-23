@@ -1,0 +1,11 @@
+Time Complexities
+1) Addition
+It traverse the matrices linearly , hence time complexity is O(n) where n is the number of non-zero elements in the
+larger matrix among the two.
+2) Transpose
+It has time complexity O(n+m) where n is numeber of columns and m is number of non zero elements in the matrix.
+3)Multiplication
+It has time complexity of O(x*n+y*m) where (x,m) is number of columns and terms in second atrix and (y,n) is number of 
+rows and terms in first matrix.
+4) Symmetrix
+It's time complexity is same as of transpose i.e. O(n+m)  where n is numeber of columns and m is number of non zero elements in the matrix.
