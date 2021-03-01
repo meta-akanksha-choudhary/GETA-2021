@@ -21,22 +21,16 @@ public class intSet {
 	public boolean isSubset(intSet s){
 		int n=this.len;
 		int m=s.len;
-		if(n>m)
+		if(n<m)
 			return false;
-		int i=0,j=0;
-		while(i<n && j<m){
-			if(this.set[i]==s.set[i]){
-				i++;
-				j++;
-				if(j==m)
-					return true;
-			}
-			else{
-				i=i-j+1;
-				j=0;
-			}
+		HashSet<Integer>hs=new HashSet<>();
+		for(int i=0;i<n;i++)
+			hs.add(this.set[i]);
+		for(int i=0;i<m;i++){
+			if(!hs.contains(s.set[i]))
+				return false;
 		}
-		return false;
+		return true;
 	}
 	public intSet union(intSet set2){
 		int j=0;
@@ -78,9 +72,9 @@ public class intSet {
 	}
 	public static void main(String args[]){
 		int arr1[]={1,5,8,9};
-		int arr2[]={5,10,15};
+		int arr2[]={5,10,15,8,9};
 	    intSet s1=new intSet(4,arr1);
-	    intSet s2=new intSet(3,arr2);
+	    intSet s2=new intSet(5,arr2);
 	    intSet s3=s1.union(s2);
 	    intSet s4=s3.compliment();
 	    System.out.println("The union of s1 and s2 is s3");
