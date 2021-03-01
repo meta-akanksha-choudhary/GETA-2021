@@ -4,33 +4,33 @@ import org.junit.Test;
 public class TestClassHex {
 	@Test
 	public void testDecToHex(){
-		assertsEquals("A",HexCal.decToHex(10));
-		assertsNotEquals("A",HexCal.decToHex(11));
+		assertEquals("A",HexCal.decToHex(10));
+		assertNotEquals("A",HexCal.decToHex(11));
 	}
 	@Test
 	public void testHexToDec(){
-		assertsEquals(10,HexCal.hexToDec("A"));
-		assertsNotEquals(11,HexCal.hexToDec("A"));
+		assertEquals(10,HexCal.hexToDec("A"));
+		assertNotEquals(11,HexCal.hexToDec("A"));
 	}
 	@Test
 	public void testAddition(){
-		assertsEquals("11",HexCal.addition("5", "6"));
-		assertsNotEquals("12",HexCal.addition("5", "6"));
+		assertEquals("11",HexCal.addition("5", "6"));
+		assertNotEquals("12",HexCal.addition("5", "6"));
 	}
 	@Test
 	public void testSubtraction(){
-		assertsEquals("1",HexCal.subtraction("7", "6"));
-		assertsNotEquals("1",HexCal.subtraction("8", "6"));
+		assertEquals("1",HexCal.subtraction("7", "6"));
+		assertNotEquals("1",HexCal.subtraction("8", "6"));
 	}
 	@Test
 	public void testMultiplication(){
-		assertsEquals("A",HexCal.multiplication("5", "2"));
-		assertsNotEquals("A",HexCal.multiplication("5", "6"));
+		assertEquals("A",HexCal.multiplication("5", "2"));
+		assertNotEquals("A",HexCal.multiplication("5", "6"));
 	}
 	@Test
 	public void testDivision(){
-		assertsEquals("2",HexCal.division("C", "6"));
-		assertsNotEquals("3",HexCal.division("C", "6"));
+		assertEquals("2",HexCal.division("C", "6"));
+		assertNotEquals("3",HexCal.division("C", "6"));
 	}
 
 }
