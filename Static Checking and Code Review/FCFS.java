@@ -51,7 +51,7 @@ class FCFS{
       int i,j;
       System.out.println("Enter number of process");
       n=sc.nextInt();
-      System.out.println("Enter process details");
+      System.out.println("Enter process details(Arrival Time , Burst Time)");
       for(i=0;i<n;i++){
         for(j=0;j<2;j++)
         arr[i][j]=sc.nextInt();
@@ -60,17 +60,17 @@ class FCFS{
       calTAT();
       calWaitingTime();
       
-      System.out.println("Process no"+" "+"Completion Time");
+      System.out.println("Process_no"+" "+"Completion_Time");
       for(i=0;i<n;i++){
-        System.out.println(i+" "+ completionTime[i]);
+        System.out.println((i+1)+"            "+ completionTime[i]);
       }
-      System.out.println("Process no"+" "+"Waiting Time");
+      System.out.println("Process_no"+" "+"Waiting_Time");
       for(i=0;i<n;i++){
-        System.out.println(i+" "+ waitingTime[i]);
+        System.out.println((i+1)+"           "+ waitingTime[i]);
       }
-      System.out.println("Process no"+" "+"TAT Time");
+      System.out.println("Process_no"+" "+"TAT");
       for(i=0;i<n;i++){
-        System.out.println(i+" "+ TAT[i]);
+        System.out.println((i+1)+"           "+ TAT[i]);
       }
       System.out.println("The maximun waiting time is"+" "+maxwaitingTime());
       System.out.println("The average waiting time is"+" "+avgWaitingTime());

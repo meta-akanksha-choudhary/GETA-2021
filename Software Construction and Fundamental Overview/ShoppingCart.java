@@ -7,20 +7,24 @@ public class ShoppingCart {
 	    public static void viewItems(){
 	        System.out.println("Items in store");
 	        Iterator<Map.Entry<String, Product>> itr = item.entrySet().iterator();
-	        System.out.println("Product Name Quantity Price/Quantity");
+	        System.out.println("Product_Name Quantity Price/Quantity");
 	        while(itr.hasNext()){
 	            Map.Entry<String, Product> entry = itr.next();
-	            System.out.println(entry.getKey()+"    "+entry.getValue().quantity+"    "+entry.getValue().price);
+	            System.out.println(entry.getKey()+"\t \t"+entry.getValue().quantity+"\t \t"+entry.getValue().price);
 	        }
 	    }
 	    public static void viewItemsInCart(){
+	    	if(cart.isEmpty())
+	    		System.out.println("The cart is empty");
+	    	else{
 	        System.out.println("Items in cart");
 	        Iterator<Map.Entry<String, Integer>> itr = cart.entrySet().iterator();
-	        System.out.println("Product  Name    Quantity ");
+	        System.out.println("Product_Name    Quantity ");
 	        while(itr.hasNext()){
 	            Map.Entry<String, Integer> entry = itr.next();
-	            System.out.println(entry.getKey()+"    "+entry.getValue());
+	            System.out.println(entry.getKey()+"\t \t \t"+entry.getValue());
 	        }
+	    	}
 	    }
 	    public static void addItemInCart(){
 	    	Scanner sc= new Scanner(System.in);
@@ -43,6 +47,9 @@ public class ShoppingCart {
 	        }
 	    }
 	    public static void removeItemFromCart(){
+	    	if(cart.isEmpty())
+	    		System.out.println("The cart is empty");
+	    	else{
 	    	Scanner sc= new Scanner(System.in);
 	      System.out.println("Enter product name");
 	      String itemName =sc.nextLine();
@@ -56,8 +63,12 @@ public class ShoppingCart {
 	        }else{
 	            System.out.println("The given item is not present in the cart");
 	        }
+	    	}
 	    }
 	    public static void updateItemInCart(){
+	    	if(cart.isEmpty())
+	    		System.out.println("The cart is empty");
+	    	else{
 	    	Scanner sc= new Scanner(System.in);
 	      System.out.println("Enter product name");
 	      String itemName =sc.nextLine();
@@ -81,9 +92,13 @@ public class ShoppingCart {
 	         else{
 	            System.out.println("The given item is not present in the cart");
 	        }
+	    	}
 	    
 	    }
 	    public static void viewBill(){
+	    	if(cart.isEmpty())
+	    		System.out.println("The cart is empty");
+	    	else{
 	      Iterator<Map.Entry<String, Integer>> itr = cart.entrySet().iterator();
 	      float sum=0.0f;
 	      System.out.println("Product Name    Quantity  Price");
@@ -95,15 +110,16 @@ public class ShoppingCart {
 	          System.out.println(entry.getKey()+"    "+entry.getValue()+"    "+p.price*entry.getValue());
 	      }
 	          System.out.println("Total"+" " +sum);
+	    	}
 	    }
 	   public static void main(String[] args) {
-		   Scanner sc= new Scanner(System.in);
+		 Scanner sc= new Scanner(System.in);
 	     Product p1=new Product(10,20);
 	     item.put("Biscuit" , p1);
-	     item.put("Chocolates" , new Product(15,150));
+	     item.put("Chocos" , new Product(15,150));
 	     item.put("Chips", new Product(20,50));
 	     item.put("Coke",new Product(12,80));
-	     item.put("Ice-cream",new Product(5,30));
+	     item.put("Cream",new Product(5,30));
 	     System.out.println("Welcome to Shopping Cart!!. The following is the list of available items in the store");
 	     viewItems();
 	     int a=1;
