@@ -41,5 +41,11 @@ public class Triangle implements Shape {
     	area=this.getArea();
     	this.originDistance=(float)Math.sqrt(Math.pow(origin.x, 2)+Math.pow(origin.y,2));
     }
+	public Timestamp getTimestamp(){
+		return ts;
+	}
+	public String getType(){
+    	return type;
+    }
 
 }

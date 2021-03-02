@@ -1,4 +1,4 @@
-
+import java.sql.Timestamp;
 public interface Shape {
 	public final int XMAX=100;
 	public final int YMAX=100;
@@ -11,4 +11,6 @@ public interface Shape {
 	public Point getOrigin(); 
 	public boolean isPointEnclosed(int x,int y);
     public void setValues(String type);
+    public Timestamp getTimestamp();
+    public String getType();
 }
