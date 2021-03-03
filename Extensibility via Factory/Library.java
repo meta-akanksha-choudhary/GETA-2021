@@ -8,6 +8,9 @@ public class Library {
 	}
 	
 	public static void printShapes(){
+		if(shapes.isEmpty())
+			System.out.println("No shape is present in list");
+		else{
 		for(Shape i : shapes){
 			System.out.println("Shape Type is "+i.getType());
 			System.out.println("Area is "+i.getArea());
@@ -15,17 +18,26 @@ public class Library {
 			System.out.println("Origin is x:"+i.getOrigin().x+" y:"+i.getOrigin().y);
 			System.out.println("Timestamp is"+i.getTimestamp());
 		}
+		}
 	}
 	public static void deleteShapeOfType(String type){
+		if(shapes.isEmpty())
+			System.out.println("No shape is present in list");
+		else{
 	  for(Shape i:shapes){
 		  if(i.getType()==type)
 			shapes.remove(i);
 	  }
 	  System.out.println("Shape deleted successfully ");
+		}
 	}
 	public static void deleteShape(Shape shape){
+		if(shapes.isEmpty())
+			System.out.println("No shape is present in list");
+		else{
 		shapes.remove(shape);
 		System.out.println("Shape deleted successfully ");
+		}
 	}
 	  public static void sortByPerimeter(){
 		  System.out.println("Shape Sorted by Perimeter ");
