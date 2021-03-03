@@ -56,7 +56,7 @@ public class Recursion {
 	 *         otherwise return -1
 	 */
 	public static int binarySearch(int arr[],int l,int r,int x){
-		if(r>=l && l<arr.length){
+		if(r>=l && l<arr.length-1){
 			int mid=l+(r-1)/2;
 			if(arr[mid]==x)
 				return mid;
@@ -66,6 +66,22 @@ public class Recursion {
 		}
 		return -1;
 	}
-	
+	public static void main(String arg[]){
+		System.out.println("The gcd of 10 and 15 is "+gcd(10,15));
+		System.out.println("The lcm of 10 and 15 is "+lcm(10,15));
+		int arr[]={5,10,6,9,15};
+		int arr1[]={5,10,15,20,21};
+		int x=20;
+		int a=linearSearch(arr,0,arr.length-1,x);
+		if(a==-1)
+			System.out.println("The element "+x+" is not present in linear search");
+		else
+			System.out.println("The element "+x+" is present in linear search at index "+a);
+		int b=binarySearch(arr1,0,arr1.length-1,x);
+		if(b==-1)
+			System.out.println("The element "+x+" not present in binary search");
+		else
+			System.out.println("The element "+x+" is present in linear search at index "+b);
+	}
 
 }
