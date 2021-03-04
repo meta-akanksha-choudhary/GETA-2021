@@ -5,6 +5,16 @@ public class Rotation {
     	List next;
     }
     public static void rotate(List A,int m,int n,int k){
+    	List temp=A;
+    	int lsize=0;
+    	while(temp!=null){
+    		lsize++;
+    		temp=temp.next;
+    	}
+    	if(lsize<m || lsize<n){
+    		System.out.println("m and n are out of list");
+    		return;
+    	}
     	int size=n-m+1;
     	if(k>size){
     		k=k%size;
