@@ -61,10 +61,23 @@ public class InfixEval implements Stack {
     			
     		}
     		else if(exp.charAt(i)=='+' || exp.charAt(i)=='-' || exp.charAt(i)=='*'
-    				|| exp.charAt(i)=='/'){
+    				|| exp.charAt(i)=='/' || (exp.charAt(i)=='>'&& exp.charAt(i+1)!='=' )|| (exp.charAt(i)=='<' && exp.charAt(i+1)!='=' )){
     			while(!ops.empty() && (precedence(Character.toString(exp.charAt(i)))>=precedence(ops.peek())))
     				values.push(evalOp(ops.pop(),Integer.parseInt(values.pop()),Integer.parseInt(values.pop())));
     			ops.push(Character.toString(exp.charAt(i)));
+    		}
+    		
+    		
+    		
+    		else if(exp.charAt(i)=='=' || exp.charAt(i)=='!' || exp.charAt(i)=='&'
+    				|| exp.charAt(i)=='|' || (exp.charAt(i)=='>'&& exp.charAt(i+1)=='=' )|| (exp.charAt(i)=='<' && exp.charAt(i+1)=='=' )){
+    			String temp="";
+    			temp=temp+exp.charAt(i);
+    			temp=temp+exp.charAt(i+1);
+    			i=i+1;
+    			while(!ops.empty() && (precedence(temp)>=precedence(ops.peek())))
+    				values.push(evalOp(ops.pop(),Integer.parseInt(values.pop()),Integer.parseInt(values.pop())));
+    			ops.push(temp);
     		}
     	}
     	while(!ops.empty())
@@ -114,14 +127,19 @@ public class InfixEval implements Stack {
     	case "<=" : return Boolean.toString(a<=b);
     	case "<" : return Boolean.toString(a<b);
     	case "!=" : return Boolean.toString(a!=b);
-    	//case "&&" : return Boolean.toString(a&&b);
-    	//case "||" : return Boolean.toString(a||b);
+    	case "&&" : return Boolean.toString(intToBool(a)&&intToBool(b));
+    	case "||" : return Boolean.toString(intToBool(a)||intToBool(b));
 		  }
     	return "#";
     }
+    public static boolean intToBool(int x){
+    	if(x>0)
+    		return true;
+    	return false;
+    }
     public static void main(String args[]){
     	InfixEval f=new InfixEval();
-    	System.out.println(f.evaluate("(10+2)==(6+6)"));
+    	System.out.println(f.evaluate("(0)&&(6+6)"));
     	
     }
 }
