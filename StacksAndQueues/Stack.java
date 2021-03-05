@@ -1,6 +1,6 @@
 
 public interface Stack {
-	public String pop(String arr[],int top);
-	public void push(String arr[],String x,int top);
+	public String pop();
+	public void push(String x);
 
 }
