@@ -83,7 +83,7 @@ public class CollegeManagement implements Queue1{
 	
 	FileInputStream fs = new FileInputStream(new File(pathOfFile));
 	HSSFWorkbook wb=new HSSFWorkbook(fs);
-	HSSFSheet sheet = wb.getSheetAt(1);
+	HSSFSheet sheet = wb.getSheetAt(0);
 	int rowEnd=Math.max(0,sheet.getLastRowNum());
 	for(int i=1;i<=rowEnd;i=i+5){
 		int j=1,k;
@@ -92,7 +92,7 @@ public class CollegeManagement implements Queue1{
 		q.insert(name);
 		List<IPrograms> a=new ArrayList<IPrograms>();
 		k=i;
-		for(int l=k;l<=k+5;l++){
+		for(int l=k;l<k+5;l++){
 		Row row1=sheet.getRow(l);
 		IPrograms ip=new IPrograms();
 		ip.name=row1.getCell(1).getStringCellValue();
@@ -111,7 +111,7 @@ public class CollegeManagement implements Queue1{
 			try{
 		FileInputStream fs = new FileInputStream(new File(pathOfExcelFile));
 		HSSFWorkbook wb=new HSSFWorkbook(fs);
-		HSSFSheet sheet = wb.getSheetAt(1);
+		HSSFSheet sheet = wb.getSheetAt(0);
 		int rowEnd=Math.max(0,sheet.getLastRowNum());
 		for(int i=1;i<=rowEnd;i++){
 			Row row=sheet.getRow(i);
@@ -126,10 +126,9 @@ public class CollegeManagement implements Queue1{
 		}
 	public static void setStudent(){
 		try{
-		HSSFWorkbook wb=new HSSFWorkbook();
-		HSSFSheet sheet=wb.createSheet("Student Program");
-		HSSFRow row;
-		
+			FileOutputStream os = new FileOutputStream(new File("C:\\Users\\akanksha.choudhary_m\\Desktop\\Students&Programs.xls"));
+			HSSFWorkbook wb=new HSSFWorkbook();
+			HSSFSheet sheet = wb.createSheet("Program & Students");
 		while(!q.isEmpty()){
 			String name=q.delete();
 	        List<IPrograms> ip=students.get(name);
@@ -148,28 +147,30 @@ public class CollegeManagement implements Queue1{
 	        	studentAndPrograms.put(name, null);
 		}
 		Iterator<Map.Entry<String, String>> itr = studentAndPrograms.entrySet().iterator();
-		int rowid=0;
 		Map.Entry<String, String>it=itr.next();
+        int rowid=1;
+		Row rowh=sheet.createRow(0);
+		Cell cella=rowh.createCell(0);
+		cella.setCellValue("Student Name");
+		Cell cellb=rowh.createCell(1);
+		cellb.setCellValue("Program Alloted");
 		while(itr.hasNext()){
-			row=sheet.createRow(rowid++);
-			int cellid=0;
-			Cell cell1=row.createCell(cellid++);
+			Row row=sheet.createRow(rowid++);
+			Cell cell1=row.createCell(0);
 			cell1.setCellValue(it.getKey());
-			Cell cell2=row.createCell(cellid++);
+			Cell cell2=row.createCell(1);
 			cell2.setCellValue(it.getValue());
-		}
-		FileOutputStream out=new FileOutputStream("C:\\Users\\akanksha.choudhary_m\\Desktop\\Students&Programs.xls");
-		wb.write(out);
-		out.close();
+		  }
+		wb.write(os);
 		}
 		catch(Exception e){
-			System.out.println(e.getMessage());
 		}
 	}
 	
 	public static void print(){
-		for(Map.Entry<String, List<IPrograms>> i: students.entrySet())
-			System.out.println(i.getKey()+" "+i.getValue());
+		//for(Map.Entry<String, List<IPrograms>> i: students.entrySet())
+		    for(Map.Entry<String, String> i: studentAndPrograms.entrySet())
+			System.out.println(i.getKey()+" \t \t"+i.getValue());
 		
 	}
 	public static void printProgram(){
@@ -183,9 +184,12 @@ public class CollegeManagement implements Queue1{
 		String file="C:\\Users\\akanksha.choudhary_m\\Desktop\\Students.xls";
 		String file1="C:\\Users\\akanksha.choudhary_m\\Desktop\\Program.xls";
 		getInputStudent(file);
-		print();
+		//print();
 		getInputProgram(file1);
-		printProgram();
+		//printProgram();
 		setStudent();
+		System.out.println("The students and alloted programs are");
+		System.out.println("Students"+"\t"+"Alloted Programs");
+		print();
 	}
 }

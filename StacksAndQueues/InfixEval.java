@@ -139,7 +139,7 @@ public class InfixEval implements Stack {
     }
     public static void main(String args[]){
     	InfixEval f=new InfixEval();
-    	System.out.println(f.evaluate("(0)&&(6+6)"));
+    	System.out.println(f.evaluate("(10+2)!=(144/12)"));
     	
     }
 }
