@@ -51,6 +51,7 @@ public class MaxHeap {
 		}
 	}
 	public void print(){
+		System.out.println("The order is");
 		for(int i=1;i<=size/2;i++){
 			System.out.print("P "+heap[i]+" "+"L "+heap[2*i]+" "+"R "+heap[2*i+1]+" ");
 			System.out.println();

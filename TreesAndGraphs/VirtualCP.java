@@ -1,36 +1,33 @@
 import java.util.*;
 public class VirtualCP {
-	public static int n=5;
 	public static class TreeNode{
 		public String val;
+		public String addr;
+		public Date date;
 		public List<TreeNode> children=new LinkedList<>();
 		public TreeNode parent;
 		public TreeNode(String data,TreeNode parent){
 			val=data;
 			this.parent=parent;
+			date=new Date();
+			if(parent==null)
+			    this.addr=data;
+			else
+			    this.addr=this.parent.addr+"\\"+data;
 		}
-		public TreeNode(String data,List<TreeNode> child,TreeNode parent){
+		/*public TreeNode(String data,List<TreeNode> child,TreeNode parent){
 			val=data;
 			children=child;
 			this.parent=parent;
-		}
+			if(parent==null)
+			    this.addr=data;
+			else
+				this.addr=this.parent.addr+"\\"+data;
+		}*/
 	}
-	public static TreeNode root=new TreeNode("A:\\>",null);
+	public static TreeNode root=new TreeNode("A:\\",null);
 	public static TreeNode curDir=root;
 	
-	/*public static TreeNode find(TreeNode node,String file){
-		if(node==null)
-			return null;
-		if(node.val==file)
-			return node;
-		int total=node.children.size();
-		for(int i=0;i<total;i++)
-			return(find(node.children.get(i),file));
-		//if(node.val==file)
-			//return node;
-		//find(node.children.get(total-1),file);
-		return node;
-	}*/
 	public static TreeNode find(TreeNode node,String file){
 		if(node==null){
 			return null;
@@ -43,10 +40,35 @@ public class VirtualCP {
 			while(n>0){
 				int index=0;
 				TreeNode p=q.remove(index);
-				if(p.val==file)
+				if(file.equals(p.val) && curDir.val.equals(p.parent.val))
 				{
 					res=p;
 					break;
+				}
+				for(int i=0;i<p.children.size();i++)
+					q.add(p.children.get(i));
+				n--;
+			}
+			
+		}
+		return res;
+	}
+	
+	public static List<TreeNode> findAll(TreeNode node,String file){
+		if(node==null){
+			return null;
+		}
+		List<TreeNode> res=new ArrayList<>();
+		List<TreeNode> q=new LinkedList<>();
+		q.add(node);
+		while(!q.isEmpty()){
+			int n=q.size();
+			while(n>0){
+				int index=0;
+				TreeNode p=q.remove(index);
+				if(file.equals(p.val))
+				{
+					res.add(p);
 				}
 				for(int i=0;i<p.children.size();i++)
 					q.add(p.children.get(i));
@@ -67,7 +89,7 @@ public class VirtualCP {
 			while(n>0){
 				int index=0;
 				TreeNode p=q.remove(index);
-				System.out.print(p.val+" ");
+				System.out.println(p.addr+">");
 				for(int i=0;i<p.children.size();i++)
 					q.add(p.children.get(i));
 				n--;
@@ -81,29 +103,60 @@ public class VirtualCP {
 		TreeNode temp=find(root,file);
 		if(temp==null){
 			curDir.children.add(new TreeNode(file,curDir));
-			System.out.println("Directory created successfully");
 		}
 		else{
 		System.out.println("Directory already exists");
 		}
 	}
 	public static void cd(String file){
-		TreeNode temp=find(root,file);
-		curDir=temp;
-		if(temp!=null)
-		  System.out.println(curDir.val);
-		else
+		TreeNode temp=find(curDir,file);
+		if(temp==null)
 			System.out.println("No such directory");
+		else{
+			curDir=temp;
+		}
 	}
 	public static void bk(){
 		if(curDir==root){
-			System.out.println(curDir.val);
+			System.out.println("This is root don't have any parent");
 		}
 		else{
 			curDir=curDir.parent;
-		    System.out.println(curDir.val);
 		}
 		
+	}
+	public static void findFile(String file){
+		List<TreeNode> temp=new ArrayList<>();
+		temp=findAll(curDir,file);
+		if(temp.isEmpty())
+			System.out.println("No such file");
+		else{
+			for(int i=0;i<temp.size();i++)
+		//System.out.println(temp.get(i).date+" "+temp.get(i).parent.val+temp.get(i).val+">");
+				System.out.println(temp.get(i).date+" "+temp.get(i).addr+">");
+		}
+	}
+	public static void ls(TreeNode node){
+		if(node==null){
+		}
+		List<TreeNode> q=new LinkedList<>();
+		q.add(node);
+		while(!q.isEmpty()){
+			int n=q.size();
+			while(n>0){
+				int index=0;
+				TreeNode p=q.remove(index);
+				/*if(p==root)
+					System.out.print(p.val+" ");
+				else
+				   System.out.print(p.parent.val+p.val+">");*/
+				System.out.print(p.date+" "+p.addr+">");
+				for(int i=0;i<p.children.size();i++)
+					q.add(p.children.get(i));
+				n--;
+			}
+			System.out.println();
+		}
 	}
 	public static void main(String args[]){
 		int a=1;
@@ -111,7 +164,7 @@ public class VirtualCP {
 		System.out.println("Welcome to VCP");
 		while(a!=0){
 			String ans="";
-			System.out.print(root.val+">");
+			System.out.print(curDir.addr+">");
 			ans=sc.nextLine();
 			String token[]=ans.split(" ");
 			switch(token[0]){
@@ -121,8 +174,9 @@ public class VirtualCP {
 			              break;
 			case "bk" :   bk();
 			              break;
-			case "ls" :   break;
-			case "find" : find(curDir,token[1]);
+			case "ls" :   ls(curDir);
+			              break;
+			case "find" : findFile(token[1]);
 				          break;
 			case "tree" : print(root);
 			              break;
