@@ -2,9 +2,9 @@ package Zoo;
 import java.util.*;
 
 public class Cage{
-	public static final int numberOfZone=1;
+	public static final int numberOfZone=2;
 	public static int currentZone[]={0,0,0};
-	public static final int numberOfCages=2;
+	public static final int numberOfCages=3;
 	public static int currentcage[]={0,0,0};
 	public static final int cageCapacity=2;
 	public String category;
@@ -36,6 +36,7 @@ public class Cage{
 								z.cageNumber=1;
 								z.animalNumber=1;
 								currentZone[0]=currentZone[0]+1;
+								currentcage[0]=1;
 							}
 						}
 						else{
@@ -81,6 +82,7 @@ public class Cage{
 								z.cageNumber=1;
 								z.animalNumber=1;
 								currentZone[1]=currentZone[1]+1;
+								currentcage[1]=1;
 							}
 						}
 						else{
@@ -126,6 +128,7 @@ public class Cage{
 								z.cageNumber=1;
 								z.animalNumber=1;
 								currentZone[2]=currentZone[2]+1;
+								currentcage[2]=1;
 							}
 						}
 						else{
@@ -156,22 +159,34 @@ public class Cage{
 	public static void removeAnimal(String category,String type){
 		if(category=="mammal"){
 			Zone z=mammal.get(type);
+			
 			if(z.animalNumber-1==0){
 				if(z.cageNumber-1==0){
+					
 					if(z.zoneNumber-1==0){
-						z.zoneNumber=z.zoneNumber-1;
-						currentZone[0]=currentZone[0]-1;
+						currentZone[0]=0;
+						currentcage[0]=0;
+						mammal.remove(z);
+						return;
 					}
-				}
-				else{
-						z.cageNumber=z.cageNumber-1;
-						currentcage[0]=currentcage[0]-1;
+				else{   
+					    z.zoneNumber=z.zoneNumber-1;
+						z.cageNumber=numberOfCages;
+						z.animalNumber=cageCapacity;
+						currentcage[0]=numberOfCages;
+						currentZone[0]=currentZone[0]-1;
 					}
 			}
 				
 			else{
-					z.animalNumber=z.animalNumber-1;
+				    z.cageNumber=z.cageNumber-1;
+					z.animalNumber=cageCapacity;
+					currentcage[0]=currentcage[0]-1;
 				}
+			}
+			else{
+				z.animalNumber=z.animalNumber-1;
+			}
 			
 			mammal.put(type, z);
 		}
@@ -181,20 +196,32 @@ public class Cage{
 			Zone z=reptile.get(type);
 			if(z.animalNumber-1==0){
 				if(z.cageNumber-1==0){
+					
 					if(z.zoneNumber-1==0){
-						z.zoneNumber=z.zoneNumber-1;
-						currentZone[1]=currentZone[1]-1;
+						currentZone[1]=0;
+						currentcage[1]=0;
+						reptile.remove(z);
+						return;
 					}
-				}
-				else{
-						z.cageNumber=z.cageNumber-1;
-						currentcage[1]=currentcage[1]-1;
+				else{   
+					    z.zoneNumber=z.zoneNumber-1;
+						z.cageNumber=numberOfCages;
+						z.animalNumber=cageCapacity;
+						currentcage[1]=numberOfCages;
+						currentZone[1]=currentZone[1]-1;
 					}
 			}
 				
 			else{
-					z.animalNumber=z.animalNumber-1;
+				    z.cageNumber=z.cageNumber-1;
+					z.animalNumber=cageCapacity;
+					currentcage[1]=currentcage[0]-1;
 				}
+			}
+			else{
+				z.animalNumber=z.animalNumber-1;
+			}
+			
 			
 			reptile.put(type, z);
 		}
@@ -203,20 +230,32 @@ public class Cage{
 			Zone z=birds.get(type);
 			if(z.animalNumber-1==0){
 				if(z.cageNumber-1==0){
+					
 					if(z.zoneNumber-1==0){
-						z.zoneNumber=z.zoneNumber-1;
-						currentZone[2]=currentZone[2]-1;
+						currentZone[2]=0;
+						currentcage[2]=0;
+						birds.remove(z);
+						return;
 					}
-				}
-				else{
-						z.cageNumber=z.cageNumber-1;
-						currentcage[2]=currentcage[2]-1;
+				else{   
+					    z.zoneNumber=z.zoneNumber-1;
+						z.cageNumber=numberOfCages;
+						z.animalNumber=cageCapacity;
+						currentcage[2]=numberOfCages;
+						currentZone[2]=currentZone[2]-1;
 					}
 			}
 				
 			else{
-					z.animalNumber=z.animalNumber-1;
+				    z.cageNumber=z.cageNumber-1;
+					z.animalNumber=cageCapacity;
+					currentcage[2]=currentcage[2]-1;
 				}
+			}
+			else{
+				z.animalNumber=z.animalNumber-1;
+			}
+			
 			
 			birds.put(type, z);
 		}

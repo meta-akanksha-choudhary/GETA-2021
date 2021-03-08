@@ -13,8 +13,9 @@ public class Zoo {
 	  Cage.addCage("mammal","lion");
 	  Cage.addCage("mammal","lion");
 	  Cage.addCage("mammal","lion");
-	  System.out.println("The zone of mammals is "+Cage.currentZone[0]);
-	  System.out.println("The cage of mammals is "+Cage.currentcage[0]);
+	  System.out.println("The current zone of mammals is "+Cage.currentZone[0]);
+	  System.out.println("The current cage of mammals is "+Cage.currentcage[0]);
+	  Cage.removeAnimal("mammal","lion");
 	  Cage.removeAnimal("mammal","lion");
 	  Cage.removeAnimal("mammal","lion");
 	  System.out.println("The zone of mammals is "+Cage.currentZone[0]);
@@ -22,9 +23,9 @@ public class Zoo {
 	  Cage.addCage("birds","peacock");
 	  Cage.addCage("reptile","crocodile");
 	  Cage.addCage("reptile","crocodile");
-	  System.out.println("The zone of reptiles is "+Cage.currentZone[1]);
-	  System.out.println("The cage of reptiles is "+Cage.currentcage[1]);
-	  System.out.println("The zone of birds is "+Cage.currentZone[2]);
-	  System.out.println("The cage of birds is "+Cage.currentcage[2]);
+	  System.out.println("The current zone of reptiles is "+Cage.currentZone[1]);
+	  System.out.println("The current cage of reptiles is "+Cage.currentcage[1]);
+	  System.out.println("The current zone of birds is "+Cage.currentZone[2]);
+	  System.out.println("The current cage of birds is "+Cage.currentcage[2]);
   }
 }
