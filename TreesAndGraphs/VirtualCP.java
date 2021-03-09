@@ -20,15 +20,6 @@ public class VirtualCP {
 			    this.level=parent.level+1;
 			}
 		}
-		/*public TreeNode(String data,List<TreeNode> child,TreeNode parent){
-			val=data;
-			children=child;
-			this.parent=parent;
-			if(parent==null)
-			    this.addr=data;
-			else
-				this.addr=this.parent.addr+"\\"+data;
-		}*/
 	}
 	public static TreeNode root=new TreeNode("A:\\",null);
 	public static TreeNode curDir=root;
@@ -84,25 +75,7 @@ public class VirtualCP {
 		return res;
 	}
 	
-	/*public static void print(TreeNode node){
-		if(node==null){
-		}
-		List<TreeNode> q=new LinkedList<>();
-		q.add(node);
-		while(!q.isEmpty()){
-			int n=q.size();
-			while(n>0){
-				int index=0;
-				TreeNode p=q.remove(index);
-				System.out.println(p.addr+">");
-				for(int i=0;i<p.children.size();i++)
-					q.add(p.children.get(i));
-				n--;
-			}
-			System.out.println();
-		}
-		
-	}*/
+	
 	
 	public static void print(TreeNode node){
 		if(node==null){
@@ -130,41 +103,6 @@ public class VirtualCP {
 		}
 		
 	}
-	
-	/*public static void printTree(TreeNode x,boolean[] flag,int depth,boolean isLast){
-		if(x==null){
-			return;
-		}
-		for(int i=1;i<depth;++i){
-			if(flag[i]==true){
-				System.out.print("|"
-						+" "
-						+" "
-						+" ");
-			}
-			else{
-				System.out.print(" "
-						+" "
-						+" "
-						+" ");
-			}
-		}
-		if(depth==0)
-			System.out.print(x.val);
-		else if(isLast){
-			System.out.print("+--- "+x.val+'\n');
-			flag[depth]=false;
-		}
-		else{
-			System.out.print("+--- "+x.val+'\n');
-		}
-		int it=0;
-		for(TreeNode i : x.children){
-			++it;
-			printTree(i,flag,depth+1,it==(x.children.size()-1));
-		}
-		flag[depth]=true;
-	}*/
 	
 	public static void mkdir(String file){
 		TreeNode temp=find(root,file);
