@@ -9,7 +9,7 @@ public class MoleculeMass {
 				int a=0;
 				i++;
 				while(str.charAt(i)!=')'){
-					if(str.charAt(i+1)>='0' && str.charAt(i+1)<='9' && i<str.length()){
+					if(str.charAt(i+1)>='0' && str.charAt(i+1)<='9' && (i+1)<str.length()){
 						int c=0;
 						c=mass.get(str.charAt(i));
 						i++;
@@ -22,12 +22,14 @@ public class MoleculeMass {
 					i++;
 					
 				}
+				if((i+1)<str.length() && str.charAt(i+1)>='0' && str.charAt(i+1)<='9'){
 				i++;
 				a=a*Integer.parseInt(String.valueOf(str.charAt(i)));
+				}
 				sum=sum+a;
 			}
 			else {
-				if(str.charAt(i+1)>='0' && str.charAt(i+1)<='9' && i<str.length()){
+				if((i+1)<str.length() && str.charAt(i+1)>='0' && str.charAt(i+1)<='9'){
 				int b=0;
 				b=mass.get(str.charAt(i));
 				i++;
