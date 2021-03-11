@@ -2,6 +2,7 @@
 public class EmployeeQuickSort {
 	public static List head=null;
     public static List end=null;
+    
 	 public static class List{
 		 String name;
 		 int age;
@@ -38,7 +39,7 @@ public class EmployeeQuickSort {
 		 while(start!=end){
 			 if(start.salary<=pivot){
 				 if(start.salary==pivot){
-					if(start.age<pivot_age) {
+					if(start.age>pivot_age) {
 						 pivot_pre=cur;
 						 String name=cur.name;
 						 int age=cur.age;
@@ -91,6 +92,18 @@ public class EmployeeQuickSort {
 			 sort(pivot_pre.next.next,end);
 		 
 	 }
+	 public void descending(){
+		 List pre=null;
+		 List cur=head;
+		 List next=null;
+		 while(cur!=null){
+			 next=cur.next;
+			 cur.next=pre;
+			 pre=cur;
+			 cur=next;
+		 }
+		 head=pre;
+	 }
      public static void main(String args[]){
 		 
 		 EmployeeQuickSort e=new EmployeeQuickSort();
@@ -107,6 +120,7 @@ public class EmployeeQuickSort {
 		 System.out.println("Before sorting");
 		 e.print();
 		 e.sort(head,end);
+		 e.descending();
 		 System.out.println("After sorting");
 		 e.print();
 	 }
