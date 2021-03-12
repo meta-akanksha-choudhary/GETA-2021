@@ -1,9 +1,30 @@
 import java.util.*;
+
+import org.json.*;
 public class BinarySearchTree implements Dictionary{
 
 	public static Node root=null;
-	
 	public BinarySearchTree(){
+		
+	}
+	public BinarySearchTree(JSONObject obj){
+		HashMap<String,String> m=new HashMap<>();
+		try {
+			JSONArray array=obj.getJSONArray("initial");
+			for(int i=0;i<array.length();i++){
+				m.put(array.getJSONObject(i).getString("key"), array.getJSONObject(i).getString("val"));
+			}
+			Iterator<Map.Entry<String,String>> itr = m.entrySet().iterator();
+			while(itr.hasNext()){
+				Map.Entry<String, String> i = itr.next();
+				addKey(i.getKey(),i.getValue());
+			}
+			
+			
+		} catch (JSONException e) {
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
 		
 	}
 	
@@ -121,19 +142,29 @@ public class BinarySearchTree implements Dictionary{
 		
 	}
 	public static void main(String args[]){
-		BinarySearchTree b=new BinarySearchTree();
-		b.addKey("Apple","It is a fruit");
-		b.addKey("Zebra","It is a animal");
-		b.addKey("Okra","It is a vegetable");
-		b.addKey("Banana","It is a fruit");
-		b.addKey("Again","To repeat");
-		System.out.println(b.getValue("Okra"));
-		List<Node> o=b.sortedPrint();
-		b.printList(o);
-		b.deleteKey("Okra");
-		List<Node> o1=b.sortedPrint();
-		b.printList(o1);
-		List<Node>o2=b.sortedPrintBetweenValues("Ab", "Okra");
-		b.printList(o2);
+		try {
+			JSONObject obj=new JSONObject("{initial : [ {key: Mango , val:It is a fruit}"
+					+ ",{key: Happy , val:It is a feeling}"
+					+ ",{key: Sad , val:It is a feeling}]}");
+			BinarySearchTree b=new BinarySearchTree(obj);
+			b.addKey("Apple","It is a fruit");
+			b.addKey("Zebra","It is a animal");
+			b.addKey("Okra","It is a vegetable");
+			b.addKey("Banana","It is a fruit");
+			b.addKey("Again","To repeat");
+			System.out.println(b.getValue("Okra"));
+			List<Node> o=b.sortedPrint();
+			b.printList(o);
+			b.deleteKey("Okra");
+			List<Node> o1=b.sortedPrint();
+			b.printList(o1);
+			List<Node>o2=b.sortedPrintBetweenValues("Ab", "Okra");
+			b.printList(o2);
+		} catch (JSONException e) {
+			
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		
 	}
 }
