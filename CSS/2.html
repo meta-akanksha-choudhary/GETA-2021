@@ -1,0 +1,264 @@
+<html>
+    <head>
+	  <style>
+	     body,html{
+		   margin:0;
+		   height=100%;
+		 }
+		 .topnav{
+		    overflow:hidden;
+			background-color:black;
+		 }
+		 .topnav a{
+		     float:left;
+			 color:white;
+			 text-align:center;
+			 padding:14px 16px;
+			 font-size:20px;
+			 text-decoration:none;
+		   }
+		  .bg{
+			 background-repeat:repeat-x;
+			 }
+			 
+			 input[type=text],input[type=password],select{
+			   width:100%;
+			   padding:12px 20px;
+			   margin: 8px 0;
+			   box-sizing:border-box;
+			 }
+			 input[type=submit]{
+			   width:100%;
+			   padding:12px 20px;
+			   margin: 8px 0;
+			   background-color:lightblue;
+			   color:black;
+			 }
+			 textarea{
+			    width:100%;
+				height:150px;
+				padding:12px 20px;
+				box-sizing:border-box;
+			 }
+			 form{
+			   margin:auto;
+			   width:50%;
+			   border : 3px solid black;
+			   padding:10px;
+			   color:blue;
+			 }
+			 h3{
+			   text-align:center;
+			 }
+			 img{
+			   display:block;
+			   margin-left:auto;
+			   margin-right:auto;
+			   width:100%;
+			 }
+			 .column{
+			    float:left;
+				width:33%;
+				text-align:center;
+				border :2px solid lightblue;
+				color:blue;
+			 }
+			 .row:after{
+			   clear:both;
+			   
+			 }
+			 .pbutton{
+			   padding:12px 20px;
+			   margin: 8px 0;
+			   background-color:lightblue;
+			   color:black;
+			 }
+			 .collapsible {
+               background-color: darkblue;
+               color: white;
+               cursor: pointer;
+               padding: 18px;
+               width: 100%;
+               border: none;
+               text-align: left;
+               outline: none;
+               font-size: 15px;
+            }
+			 .active, .collapsible:hover {
+                 background-color: #ccc;
+             }
+			  .content {
+               padding: 0 18px;
+               display: none;
+               overflow: hidden;
+            }
+			
+	  </style>
+	</head>
+    <body>
+	   <!-- Navbar starts here -->
+	   <nav class="topnav">
+	      <a href="#addEmployee">Add Employee</a> |
+		  <a href="#addVehicle">Add Vehicle</a> |
+		  <a href="#feedback">Give feedback</a> |
+		  <a href="#pricing">Pricing</a>
+	   </nav>
+	   <!-- Navbar ends here -->
+         <img id="parking" src="C:\Users\akanksha.choudhary_m\Downloads\b.jfif">
+	     <br><br>
+		 
+	   <!-- Employee form starts here -->
+	   <section id="addEmployee">
+	      <button type="button" class="collapsible">Employee Details</button>
+		  <div class="content">
+	      <form>
+		    <label for="name">Full Name : </label>
+			<br>
+			<input type="text" id="name" name="name">
+			<br>
+			<br>
+			<label for="gender">Choose Gender : </label><br>
+			<select name="gender" id="gender">
+			   <option value="male">Male</option>
+			   <option value="female">Female</option>
+			   <option value="other">Other</option>
+			</select>
+			<br>
+			<br>
+			<label for="email">Email Id : </label>
+			<br>
+			<input type="text" id="email" name="email">
+			<br>
+			<label for="password">Password : </label>
+			<br>
+			<input type="password" id="password" name="password">
+			<br>
+			<label for="cpassword">Confirm Password : </label>
+			<br>
+			<input type="password" id="cpassword" name="cpassword">
+			<br>
+			<label for="number">Conatct Number : </label>
+			<br>
+			<input type="text" id="number" name="number">
+			<br>
+			<br>
+			<input type="submit" value="Submit">
+		  </form>
+          </div>
+       </section>
+	   <!-- Employee form ends here -->
+	   <br>
+	   <!--Vehicle form starts here -->
+	   <section id="addVehicle">
+	      <button type="button" class="collapsible">Vehicle Details</button>
+	      <form class="content">
+		    <label for="vmake">Vehicle Make : </label>
+			<br>
+			<input type="text" id="vmake" name="vmake">
+			<br>
+			<label for="vmodel">Vehicle Model : </label>
+			<br>
+			<input type="text" id="vmodel" name="vmodel">
+			<br>
+			<label for="type">Type : </label>
+			<br>
+			<select name="type" id="type">
+			   <option value="cycle">Cycle</option>
+			   <option value="motorcycle">Motor Cycle</option>
+			   <option value="fourwheeler">Four-Wheeler/option>
+			</select>
+			<br>
+			<br>
+			<label for="vnumber">Vehicle Number : </label>
+			<br>
+			<input type="text" id="vnumber" name="vnumber">
+			<br>
+			<label for="eid">Employee Id : </label>
+			<br>
+			<input type="text" id="eid" name="eid">
+			<br>
+			<label for="identification">Identification : </label>
+			<br>
+			<textarea id="identification" name="identification" rows="4" cols="50"></textarea>
+			<br>
+			<br>
+			<input type="submit" value="Submit">
+		  
+		  </form>
+		  
+	   </section>
+	   <!-- Vehicle form ends here -->
+	   <br>
+	   <!-- Feedback form starts here -->
+	   <section id="feedback">
+	       <button type="button" class="collapsible">Get in Touch</button>
+	       <form class="content">
+		      <label for="name">Name : </label>
+			  <br>
+			  <input type="text" id="name" name="name">
+			  <br>
+			  <label for="email">Email : </label>
+			  <br>
+			  <input type="text" id="email" name="email">
+			  <br>
+			  <label for="subject">Subject : </label>
+			  <br>
+			  <input type="text" id="subject" name="subject">
+			  <br>
+		      <label for="message">Message : </label>
+			  <br>
+			  <textarea id="message" name="message" rows="4" cols="50"></textarea>
+			  <br>
+			  <br>
+			  <input type="submit" value="Submit"> 
+		   </form>
+	   </section>
+	   <!-- Feedback form ends here -->
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+	   
+	   <br>
+	   <!-- Pricing starts here -->
+	   <section id="pricing">
+	        <h3>Pricing</h3>
+	        <div class="row">
+	        <div class="column">
+			  <h4 style="color:black;">CYCLE</h3>
+			  <h4>$5 Daily</h4>
+			  <h4>$100 Monthly</h4>
+			  <h4>$500 Yearly</h4>
+			  <button type="button" class="pbutton">Purchase Now</button> 
+			</div> 
+            <div class="column">
+			  <h4 style="color:black;">MOTORCYCLE</h3>
+			  <h4>$10 Daily</h4>
+			  <h4>$200 Monthly</h4>
+			  <h4>$1000 Yearly</h4>
+			  <button type="button" class="pbutton">Purchase Now</button>
+			</div class="column"> 
+            <div class="column">
+			  <h4 style="color:black;">FOUR-WHEELER</h3>
+			  <h4>$20 Daily</h4>
+			  <h4>$500 Monthly</h4>
+			  <h4>$3500 Yearly</h4>
+			  <button type="button" class="pbutton">Purchase Now</button>
+			</div> 	
+            </div>			
+	   </section>
+	 <!-- Pricing starts here -->
+    </body>
+</html>
