@@ -1,8 +1,8 @@
 import { LightningElement, track, wire } from 'lwc';
 import getTeamList from '@salesforce/apex/CustomController.getTeamList';
 import getAllTeamMembers from '@salesforce/apex/CustomController.getAllTeamMembers';
-import insertMember from '@salesforce/apex/CustomController.insertMember';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { createRecord} from "lightning/uiRecordApi";
 
 export default class TeamsApp extends LightningElement {
 	@track teamMemberList = [];
@@ -17,10 +17,17 @@ export default class TeamsApp extends LightningElement {
 	}
 
 	handleSubmit(event) {
-		insertMember({ name: event.detail.memberName, teamId: event.detail.teamId.split(':')[0], skills: event.detail.memberSkills })
-			.then(res => {
-				if(res){
-					this.showSuccessToast();
+		const fields = {};
+		fields['Name'] = event.detail.memberName
+		fields['Team__c'] = event.detail.teamId.split(':')[0]
+		fields['Skills__c'] = event.detail.memberSkills;
+		const recordInput = {
+			apiName: 'Team_Member__c',
+			fields,
+		};
+		createRecord(recordInput)
+			.then(() => {
+				this.showSuccessToast();
 					this.teamMemberList = [{
 						'Name':event.detail.memberName,
 						'Skills__c':event.detail.memberSkills,
@@ -30,11 +37,10 @@ export default class TeamsApp extends LightningElement {
 					},
 					...this.teamMemberList
 					];
-				}
-				else
-					this.showErrorToast();
 			})
-			.catch(err => console.log(err));
+			.catch((error) => {
+				this.showErrorToast();
+			});
 	}
 	showSuccessToast() {
 		this.dispatchEvent(
